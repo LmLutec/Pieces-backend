@@ -11,10 +11,11 @@ class Scraper  < ApplicationRecord
     def self.daily_page
         site = open("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign=1")
         doc = Nokogiri::HTML(site)
-        byebug
-        # doc.css('.my-horoscope-table-wrap').css('a').each do |i|
-        #     @@arr << i.attr('href')
-        # end 
+        # byebug
+        doc.css('div.main-horoscope').css('p').each do |i|
+            byebug
+            # @@arr << i.attr('href')
+        end 
         daily_readings
     end 
 
