@@ -9,12 +9,12 @@ class Scraper  < ApplicationRecord
     @@arr = []
 
     def self.daily_page
-        site = open("https://astrostyle.com/horoscopes/daily/")
+        site = open("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign=1")
         doc = Nokogiri::HTML(site)
-        
-        doc.css('.my-horoscope-table-wrap').css('a').each do |i|
-            @@arr << i.attr('href')
-        end 
+        byebug
+        # doc.css('.my-horoscope-table-wrap').css('a').each do |i|
+        #     @@arr << i.attr('href')
+        # end 
         daily_readings
     end 
 
@@ -23,7 +23,7 @@ class Scraper  < ApplicationRecord
             site = open(d)
             doc = Nokogiri::HTML(site)
             reading = doc.css('.horoscope-content').css('p').text
-            byebug
+            
             date = doc.css('.horoscope-content').css('h2').children[0].text.strip
             sign = d.split("/").last.capitalize
             find_horoscope = Horoscope.find_by(name: sign) 
