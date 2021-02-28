@@ -6,6 +6,7 @@ class HoroscopesController < ApplicationController
     @@arr = []
 
     def index
+        Scraper.daily_page
        horoscopes = Horoscope.all 
        render json: HoroscopeSerializer.new(horoscopes).to_serialized_json
     end 

@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'pry'
 
 
 
@@ -14,6 +15,7 @@ class Scraper  < ApplicationRecord
         doc.css('.my-horoscope-table-wrap').css('a').each do |i|
             @@arr << i.attr('href')
         end 
+        byebug
         daily_readings
     end 
 
